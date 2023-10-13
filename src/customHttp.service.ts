@@ -1,5 +1,9 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+} from '@nestjs/common';
 import { catchError, lastValueFrom } from 'rxjs';
 
 /**
@@ -14,8 +18,9 @@ export class CustomHttpService {
     const observable = this.httpService.get<T>(...args);
     const { data } = await lastValueFrom(
       observable.pipe(
-        catchError(() => {
-          throw InternalServerErrorException;
+        catchError((err, caught) => {
+          Logger.error(err);
+          throw new InternalServerErrorException();
         }),
       ),
     );

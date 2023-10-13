@@ -9,7 +9,11 @@ import configuration from './config/configuration';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
+      envFilePath: [
+        `.env.${process.env.NODE_ENV}`,
+        `.env.${process.env.NODE_ENV}.local`,
+        '.env',
+      ],
       load: [configuration],
     }),
     TrendsModule,

@@ -7,16 +7,23 @@ import { TrendsInterface } from './trends.interface';
  */
 @Injectable()
 export class ZennTrendsService implements TrendsInterface {
-  private readonly baseUrl = 'https://api.zenn.dev';
+  private readonly baseUrl = 'https://zenn.dev/api';
   constructor(private readonly customHttpService: CustomHttpService) {}
 
   /**
    * Zennのトレンド記事を取得
-   * @returns
+   * 上位100件の記事を取得する
    */
-  async getTrends(): Promise<Article[] | null> {
+  async getTrends(): Promise<Article[]> {
     const articles = await this.getArticles({ order: 'daily', count: 100 });
-    return articles;
+    if (!articles) {
+      return [];
+    }
+    if (articles.length > 100) {
+      return articles.slice(0, 100);
+    } else {
+      return articles;
+    }
   }
 
   /**
