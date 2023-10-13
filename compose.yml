@@ -1,0 +1,20 @@
+services:
+  trend-tech:
+    build: .
+    working_dir: /usr/src/app
+    ports: 
+      - "3000:3000"
+    env_file:
+      - ./.env
+    command: ["yarn", "start:dev"]
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /usr/src/app/src
+        - action: sync
+          path: ./prisma
+          target: /usr/src/app/prisma
+        - action: rebuild
+          path: ./package.json
+          target: /usr/src/app/package.json
