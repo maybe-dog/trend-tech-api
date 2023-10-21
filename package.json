@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "openapi:export": "ts-node --files -r tsconfig-paths/register ./docs/exportOpenAPIDocument.ts"
+    "openapi:export": "ts-node --files -r tsconfig-paths/register ./docs/exportOpenAPIDocument.ts",
+    "redocly": "redocly build-docs ./docs/openapi.yaml --output ./docs/redoc-static.html"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",
@@ -27,6 +28,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.12",
+    "@redocly/cli": "^1.3.0",
     "axios": "^1.5.1",
     "axios-extensions": "^3.1.6",
     "cheerio": "^1.0.0-rc.12",
