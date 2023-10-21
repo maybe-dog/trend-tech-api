@@ -19,7 +19,7 @@ export class CustomHttpService {
     const { data } = await lastValueFrom(
       observable.pipe(
         catchError((err, caught) => {
-          Logger.error(err);
+          Logger.error(err, caught);
           throw new InternalServerErrorException();
         }),
       ),
