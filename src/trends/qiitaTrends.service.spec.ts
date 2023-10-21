@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { QiitaArticle, QiitaTrendsService } from './qiitaTrends.service';
+import { QiitaItem, QiitaTrendsService } from './qiitaTrends.service';
 import { CustomHttpService } from 'src/customHttp.service';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import configuration from 'src/config/configuration';
 import { generateRandomNumber, generateRandomString } from 'test/utils/random';
 
-const genArticle = (): QiitaArticle => {
+const genItem = (): QiitaItem => {
   return {
     rendered_body: 'Mock rendered body',
     body: 'Mock body',
@@ -63,15 +63,20 @@ describe('QiitaTrendServiceの単体テスト', () => {
 
     service = module.get<QiitaTrendsService>(QiitaTrendsService);
 
+    // 実際にAPIを叩かないよう念のためモック
+    Object.defineProperty(service, 'baseUrl', {
+      value: 'baseUrl',
+    });
+
     // getItems()のモックを作成
     jest.spyOn(service, 'getItems').mockImplementation(async (params) => {
       params.page = params.page || 1;
       params.per_page = params.per_page || 10;
-      const articles: QiitaArticle[] = [];
+      const items: QiitaItem[] = [];
       for (let i = 0; i < params.per_page; i++) {
-        articles.push(genArticle());
+        items.push(genItem());
       }
-      return articles;
+      return items;
     });
   });
 
@@ -80,13 +85,13 @@ describe('QiitaTrendServiceの単体テスト', () => {
   });
 
   it('getTrends()で100件記事を取得し、like_count順で降順にソート出来ること', async () => {
-    const articles = await service.getTrends();
+    const trends = await service.getTrends();
     // 記事数が100件であること
-    expect(articles.length).toBe(100);
+    expect(trends.length).toBe(100);
     // like_countが降順にソートされていること
     for (let i = 0; i < 99; i++) {
-      expect(articles[i].likes_count).toBeGreaterThanOrEqual(
-        articles[i + 1].likes_count,
+      expect(trends[i].likes_count).toBeGreaterThanOrEqual(
+        trends[i + 1].likes_count,
       );
     }
   });

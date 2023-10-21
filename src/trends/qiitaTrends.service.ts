@@ -22,7 +22,7 @@ export class QiitaTrendsService implements TrendsInterface {
    * Qiitaのトレンド記事を取得
    * 上位100件の記事を取得する
    */
-  async getTrends(): Promise<QiitaArticle[]> {
+  async getTrends(): Promise<QiitaItem[]> {
     const promises = [];
     const maxPage = 5;
     for (let i = 1; i <= maxPage; i++) {
@@ -42,15 +42,14 @@ export class QiitaTrendsService implements TrendsInterface {
   /**
    * Qiitaの投稿を取得
    */
-  async getItems(
-    params: QiitaItemRequestParams,
-  ): Promise<QiitaArticle[] | null> {
-    const articles: QiitaArticle[] = await this.customHttpService.get<
-      QiitaArticle[]
-    >(this.baseUrl + '/items', {
-      params: params,
-      headers: { Authorization: `Bearer ${this.API_KEY}` },
-    });
+  async getItems(params: QiitaItemRequestParams): Promise<QiitaItem[] | null> {
+    const articles: QiitaItem[] = await this.customHttpService.get<QiitaItem[]>(
+      this.baseUrl + '/items',
+      {
+        params: params,
+        headers: { Authorization: `Bearer ${this.API_KEY}` },
+      },
+    );
     Logger.debug(`Bearer ${this.API_KEY}`);
     return articles;
   }
@@ -62,7 +61,7 @@ export type QiitaItemRequestParams = {
   query?: string;
 };
 
-export type QiitaArticle = {
+export type QiitaItem = {
   rendered_body: string;
   body: string;
   coediting: boolean;
