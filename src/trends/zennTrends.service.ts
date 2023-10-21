@@ -53,7 +53,7 @@ type ZennArticleResponse = {
   next_page: number | null;
 };
 
-type Article = {
+export type Article = {
   id: number;
   post_type: 'Article';
   title: string;
