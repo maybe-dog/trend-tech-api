@@ -56,13 +56,13 @@ export class QiitaTrendsService implements TrendsInterface {
   }
 }
 
-type QiitaItemRequestParams = {
+export type QiitaItemRequestParams = {
   page?: number;
   per_page?: number;
   query?: string;
 };
 
-type QiitaArticle = {
+export type QiitaArticle = {
   rendered_body: string;
   body: string;
   coediting: boolean;
