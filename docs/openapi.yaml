@@ -1,0 +1,32 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /trends/zenn:
+    get:
+      operationId: TrendsController_getZennTrends
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /trends/qiita:
+    get:
+      operationId: TrendsController_getQiitaTrends
+      parameters: []
+      responses:
+        '200':
+          description: ''
+info:
+  title: trend-tech-api
+  description: trend-tech-api API仕様書
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas: {}
