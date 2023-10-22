@@ -65,7 +65,7 @@ describe('QiitaTrendServiceの単体テスト', () => {
 
     // 実際にAPIを叩かないよう念のためモック
     Object.defineProperty(service, 'baseUrl', {
-      value: 'baseUrl',
+      value: 'https://example.com',
     });
 
     // getItems()のモックを作成
