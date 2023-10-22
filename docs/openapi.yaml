@@ -14,6 +14,10 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZennTrendsResponse'
   /trends/qiita:
     get:
       operationId: TrendsController_getQiitaTrends
@@ -21,6 +25,10 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QiitaTrendsResponse'
 info:
   title: trend-tech-api
   description: trend-tech-api API仕様書
@@ -29,4 +37,10 @@ info:
 tags: []
 servers: []
 components:
-  schemas: {}
+  schemas:
+    ZennTrendsResponse:
+      type: object
+      properties: {}
+    QiitaTrendsResponse:
+      type: object
+      properties: {}

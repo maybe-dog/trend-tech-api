@@ -28,8 +28,6 @@ jobs:
         run: yarn format
       - name: Run ESLint
         run: yarn lint
-      - name: Generate OpenAPI docs
-        run: yarn openapi:export
       - name: Generate ReDoc html
         run: yarn redocly
       - name: commit changes
