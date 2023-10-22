@@ -10,10 +10,10 @@ on:
 
 jobs:
   review:
-    if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }}
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'gpt review') }}
     runs-on: ubuntu-latest
     steps:
       - uses: anc95/ChatGPT-CodeReview@main
-        with:
+        env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           LANGUAGE: Japanese
