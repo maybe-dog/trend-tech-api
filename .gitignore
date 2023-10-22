@@ -37,3 +37,10 @@ lerna-debug.log*
 # .env
 .env
 .env*.local
+
+# test artifacts
+coverage
+
+# jest html reporter
+jest_html_reporters.html
+jest-html-reporters-attach
