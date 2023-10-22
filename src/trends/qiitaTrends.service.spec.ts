@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { QiitaItem, QiitaTrendsService } from './qiitaTrends.service';
+import { QiitaTrendsService } from './qiitaTrends.service';
+import { QiitaItem } from './dto/qiita.dto';
 import { CustomHttpService } from 'src/customHttp.service';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
@@ -8,38 +9,59 @@ import { generateRandomNumber, generateRandomString } from 'test/utils/random';
 
 const genItem = (): QiitaItem => {
   return {
-    rendered_body: 'Mock rendered body',
-    body: 'Mock body',
+    rendered_body: 'This is the rendered body of the Qiita item.',
+    body: 'This is the body of the Qiita item.',
     coediting: false,
-    comments_count: 0,
-    created_at: '2023-10-22T00:00:00Z',
-    id: 'mock-article-id',
+    comments_count: 10,
+    created_at: '2023-10-22T08:00:00Z',
+    group: {
+      created_at: '2023-10-20T12:00:00Z',
+      description: 'Sample group',
+      name: 'Sample Group',
+      private: false,
+      updated_at: '2023-10-20T12:30:00Z',
+      url_name: 'sample-group',
+    },
+    id: '1234567890abcdef',
     likes_count: generateRandomNumber(0, 100),
     private: false,
-    reactions_count: 0,
-    stocks_count: 0,
-    tags: [{ name: 'Tag1' }, { name: 'Tag2' }],
+    reactions_count: 15,
+    stocks_count: 30,
+    tags: [
+      {
+        name: 'JavaScript',
+        versions: ['ES6', 'ES7'],
+      },
+      {
+        name: 'Web Development',
+      },
+    ],
     title: generateRandomString(20),
-    updated_at: '2023-10-22T00:00:00Z',
-    url: 'https://example.com/mock-article',
+    updated_at: '2023-10-22T10:00:00Z',
+    url: 'https://qiita.com/sample-item',
     user: {
-      description: 'Mock user description',
-      facebook_id: 'mock-fb-id',
-      followees_count: 0,
-      followers_count: 0,
-      github_login_name: null,
-      id: 'mock-user-id',
-      items_count: 0,
-      linkedin_id: 'mock-linkedin-id',
-      location: 'Mock City',
-      name: 'Mock User',
-      organization: 'Mock Organization',
-      permanent_id: 1,
-      profile_image_url: 'https://example.com/mock-avatar.png',
+      description: 'Sample user description',
+      facebook_id: 'facebook123',
+      followees_count: 50,
+      followers_count: 100,
+      github_login_name: 'sampleUser',
+      id: 'user123',
+      items_count: 5,
+      linkedin_id: 'linkedin123',
+      location: 'Sample City',
+      name: 'John Doe',
+      organization: 'Sample Organization',
+      permanent_id: 9876543210,
+      profile_image_url: 'https://example.com/sample-user-image.jpg',
       team_only: false,
-      twitter_screen_name: null,
-      website_url: 'https://example.com/mock-user',
+      twitter_screen_name: 'sample_twitter',
+      website_url: 'https://example.com/sample-user-website',
     },
+    page_views_count: 500,
+    team_membership: {
+      name: 'Sample Team',
+    },
+    organization_url_name: 'sample-org',
     slide: false,
   };
 };

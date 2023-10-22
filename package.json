@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "openapi:export": "ts-node --files -r tsconfig-paths/register ./docs/exportOpenAPIDocument.ts",
-    "redocly": "redocly build-docs ./docs/openapi.yaml --output ./docs/redoc-static.html"
+    "redocly": "yarn openapi:export && redocly build-docs ./docs/openapi.yaml --output ./docs/redoc-static.html"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",

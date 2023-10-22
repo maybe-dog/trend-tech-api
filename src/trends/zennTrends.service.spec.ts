@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Article, ZennTrendsService } from './zennTrends.service';
+import { ZennTrendsService } from './zennTrends.service';
+import { Article } from './dto/zenn.dto';
 import { CustomHttpService } from 'src/customHttp.service';
 import { HttpModule } from '@nestjs/axios';
 
