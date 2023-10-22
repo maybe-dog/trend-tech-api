@@ -71,5 +71,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: jest-report
-          path: ./jest-html-reporters.html
+          path: ./jest_html_reporters.html
           retention-days: 7
