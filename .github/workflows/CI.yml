@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
       - name: Install yarn dependencies
         run: yarn install
       - name: Run Prettier
@@ -47,6 +48,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
       - name: Install yarn dependencies
         run: yarn install
       - name: Build
@@ -63,6 +65,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
       - name: Install yarn dependencies
         run: yarn install
       - name: Run tests
