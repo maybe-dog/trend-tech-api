@@ -10,7 +10,7 @@ on:
 
 jobs:
   review:
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'gpt review') }}
+    if: ${{ github.event.label.name == 'gpt review' }}
     runs-on: ubuntu-latest
     steps:
       - uses: anc95/ChatGPT-CodeReview@main
