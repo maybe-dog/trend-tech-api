@@ -73,3 +73,5 @@ jobs:
           name: jest-report
           path: ./jest_html_reporters.html
           retention-days: 7
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2
