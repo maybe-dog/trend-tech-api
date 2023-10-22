@@ -1,0 +1,10 @@
+src:
+  - src/**/*.ts
+test:
+  - '**/*.spec.ts'
+workflow:
+  - .github/workflows/*
+docs:
+  - docs/**/*
+database:
+  - prisma/schema.prisma
